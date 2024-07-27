@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>คำนวณ Effective Rate</title>
+  <style>
+    /* CSS styles here */
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    input[type="number"] {
+      width: 150px;
+      padding: 10px;
+      margin: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>คำนวณ Effective Rate</h2>
+  <label for="nominalRate">อัตราดอกเบี้ย (ต่อปี):</label>
+  <input type="number" id="nominalRate" placeholder="ใส่เปอร์เซ็นต์">
+  <br>
+  <label for="compoundingFrequency">ความถี่ในการคิดดอกเบี้ยต่อปี:</label>
+  <input type="number" id="compoundingFrequency" placeholder="เช่น 1 (ต่อปี), 2 (ทุก 6 เดือน), 12 (ทุกเดือน)">
+  <br>
+  <button onclick="calculateEffectiveRate()">คำนวณ</button>
+  <p id="result"></p>
+
+  <script>
+    function calculateEffectiveRate() {
+      const nominalRate = parseFloat(document.getElementById('nominalRate').value) / 100;
+      const compoundingFrequency = parseFloat(document.getElementById('compoundingFrequency').value);
+
+      const effectiveRate = Math.pow(1 + nominalRate / compoundingFrequency, compoundingFrequency) - 1;
+
+      document.getElementById('result').textContent = `Effective Rate: ${(effectiveRate * 100).toFixed(2)}%`;
+    }
+  </script>
+</body>
+</html>
